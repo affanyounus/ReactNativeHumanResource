@@ -5,59 +5,31 @@
  * @format
  */
 
-import React, {useEffect, useState} from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-} from 'react-native';
-
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
+import React from 'react';
+import {Text, View} from 'react-native';
 import Login from './components/screens/Login';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Dashboard from './components/screens/Dashboard';
 
-
-
+const Stack = createNativeStackNavigator();
 function App(): JSX.Element {
-
-  const isDarkMode = useColorScheme() === 'dark';
-const backgroundStyle = {
-  backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-};
-
-const [themeMode, setThemeMode] = useState( useColorScheme());
-
-useEffect(() => {
-
-  
- 
-
-}, [themeMode]);
-
- 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <Login />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} options={{headerShown: false}}   />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-    }
-
-});
+// function DetailsScreen(): React.JSX.Element {
+//   return (
+//     <View style={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+//       <Text>Details Screen</Text>
+//     </View>
+//   );
+// }
 
 export default App;

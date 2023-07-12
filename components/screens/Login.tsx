@@ -1,45 +1,98 @@
-import { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import React, {useState} from 'react';
+import {View, StyleSheet, Image, Text} from 'react-native';
+import {TextInput, Button} from 'react-native-paper';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import CommonLayout from '../common/CommonLayout';
 
-export default function Login() {
+const LoginComponent = (): React.JSX.Element => {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [buttonLoader, setButtonLoader] = useState(false);
 
-    const [username, SetUsername] = useState('');
-    const [password, SetPassword] = useState('');
+  const handleLogin = () => {
+    // here do API tasks
 
-    const handleLogin = () => {
+    
+    console.log('Login called');
+    setButtonLoader(true);
+    setTimeout(() => {
+      setButtonLoader(false);
+      navigation.navigate('Dashboard');
+    }, 3000);
 
-        // here do API tasks
+   
+  };
 
-        console.log("Login called");
-
-    };
-
-    return (
-        <View style={styles.container}>
-            <View style={{ width: "100%", padding: 8 }}>
-                <TextInput style={styles.TextInput} mode="outlined" label="Username" value={username} onChangeText={text => SetUsername(text)} />
-                <TextInput style={styles.TextInput} mode="outlined" label="Password" secureTextEntry={true} value={password} onChangeText={text => SetUsername(text)} />
-                <Button loading={true} style={styles.Button} theme={{roundness: 2}} mode="contained" onPress={handleLogin}>Login</Button>
-            </View>
+  return (
+    <View>
+      <View style={{padding: 8, width: '100%', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            source={require('../../images/logo-hris.png')}
+            style={{
+              resizeMode: 'contain',
+              flex: 1,
+              aspectRatio: 4,
+              marginVertical: 30,
+            }}
+          />
         </View>
-    );
 
+        <TextInput
+          style={styles.TextInput}
+          mode="outlined"
+          label="Username"
+          value={username}
+          onChangeText={text => setUsername(text)}
+        />
+        <TextInput
+          style={styles.TextInput}
+          mode="outlined"
+          label="Password"
+          secureTextEntry={true}
+          value={password}
+          onChangeText={text => setPassword(text)}
+        />
+        <Text>Forgot Password?</Text>
+        <Button
+          style={styles.Button}
+          theme={{roundness: 2}}
+          mode="contained-tonal"
+          loading={buttonLoader}
+          buttonColor={'#46d63c'}
+          onPress={handleLogin}>
+          Login
+        </Button>
+      </View>
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#fcfcfc"
-    },
-    TextInput: {
-        width: "100%",
-        marginBottom: 12 
-    },
-    Button: {
-        marginVertical: 20
-    }
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fcfcfc',
+  },
+  TextInput: {
+    width: '100%',
+    marginBottom: 12,
+  },
+  Button: {
+    marginVertical: 20,
+  },
 });
+
+
+export default function Login(): React.JSX.Element {
+
+  return (
+    <CommonLayout>
+      <LoginComponent />
+    </CommonLayout>
+  );
+
+}
