@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   useColorScheme,
@@ -7,6 +6,8 @@ import {
 } from 'react-native';
 import React, {ReactNode} from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
 
 interface CommonLayoutProps {
   children: ReactNode
