@@ -6,7 +6,7 @@
  */
 
 import React, {useState, useEffect} from 'react';
-import {Text, View} from 'react-native';
+import {Animated, Text, View} from 'react-native';
 import Login from './components/screens/Login';
 import {NavigationContainer, ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackHeaderProps, NativeStackNavigationProp, createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -31,7 +31,9 @@ const CustomAppBar = ({ navigation, route, options, back,}: NativeStackHeaderPro
 
 
 
-  const title = getHeaderTitle(options, route.name);
+  // const title = getHeaderTitle(options, route.name);
+
+  const title = '';
 
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
@@ -45,7 +47,7 @@ const CustomAppBar = ({ navigation, route, options, back,}: NativeStackHeaderPro
   }, []);
 
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{backgroundColor: '#F9FFFE'}}  >
       {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
       <Appbar.Content title={title} />
       {back && route.name == 'Dashboard' ? (
@@ -115,30 +117,32 @@ const DashboardScreens = ()=>{
   )
 }
 
+
 const App = (): React.JSX.Element => {
 
-  const configAnimation = {
-    animation: 'spring',
-    config: {
-      stiffness: 1000,
-      damping: 500,
-      mass: 3,
-      overshootClamping: true,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01,
-    },
-  };
+  // const configAnimation = {
+  //   animation: 'fade',
+  //   config: {
+  //     stiffness: 1000,
+  //     damping: 500,
+  //     mass: 3,
+  //     overshootClamping: true,
+  //     restDisplacementThreshold: 0.01,
+  //     restSpeedThreshold: 0.01,
+  //   },
+  // };
+
+  const commonOptions = {
+    animation: 'fade',
+  }
 
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login' screenOptions={{
          header: (props) => <CustomAppBar {...props} /> }} >
-         <Stack.Screen name="Settings" component={Settings} options={{transitionSpec: {
-      open: configAnimation,
-      close: configAnimation,
-    }}} />
+         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Login" component={Login} options={{headerShown: false}}   />
-        <Stack.Screen name="Dashboard" component={DashboardScreens} />
+        <Stack.Screen name="Dashboard" component={DashboardScreens}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
