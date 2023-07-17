@@ -95,7 +95,7 @@ const CommonLayout: React.FC<CommonLayoutProps> = ({children})=>{
         showHideTransition={statusBarTransition}
         hidden={hidden}
       />
-      <Text style={styles.textStyle}>
+      {/* <Text style={styles.textStyle}>
         StatusBar Visibility:{'\n'}
         {hidden ? 'Hidden' : 'Visible'}
       </Text>
@@ -118,7 +118,7 @@ const CommonLayout: React.FC<CommonLayoutProps> = ({children})=>{
             onPress={changeStatusBarTransition}
           />
         ) : null}
-      </View>
+      </View> */}
       <View>{children}</View>
     </SafeAreaView>
   );

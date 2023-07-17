@@ -13,14 +13,15 @@ const theme = {
   mode: 'adaptive',
   colors: {
     ...DefaultTheme.colors,
-    primary: '#018749',
+    primary: 'orange',
     accent: '#ACE1AF',
-    secondary: '#ADFF2F',
-    background: '#F9FFFE',
-    onSurface: "green",
+    secondary: 'dodgerblue',
+    background: '#f5f5f5',
+    onSurface: "#3c3c3c",
 		onSurfaceVariant: "grey",
     primaryContainer: "red",
-		secondaryContainer: "#2E8B57",
+		secondaryContainer: "orange",
+    // inversePrimary: "SlateBlue",
 		// tertiary: "purple",
 		// tertiaryContainer: "dodgerblue",
 		// surface: "green",
@@ -44,6 +45,17 @@ const theme = {
 		// inverseSurface: "Tomato",
 		// inverseOnSurface: "Teal",
 		// inversePrimary: "SlateBlue",
+    shadow: "orange",
+		scrim: "yellow",
+		backdrop: "red",
+    elevation: {
+			level0: "transparent",
+			level1: "purple",
+			level2: "#fff",
+			level3: "teal",
+			level4: "dodgerblue",
+			level5: "brown"
+		}
   },
 };
 

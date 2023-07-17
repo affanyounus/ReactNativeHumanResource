@@ -61,7 +61,7 @@ const LoginComponent = (): React.JSX.Element => {
           theme={{roundness: 2}}
           mode="contained-tonal"
           loading={buttonLoader}
-          buttonColor={'#46d63c'}
+          buttonColor={'orange'}
           onPress={handleLogin}>
           Login
         </Button>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fcfcfc',
+    backgroundColor: '#fff',
   },
   TextInput: {
     width: '100%',
